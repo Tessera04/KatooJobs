@@ -16,6 +16,16 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Que tipo de cuenta deseas tener?')" />
+            <select name="rol" id="rol" 
+                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm w-full">
+                <option value="">-- Seleccionar un rol --</option>
+                <option value="1">Developer - Obtener Empleo</option>
+                <option value="2">Recruiter - Publicar Empleos</option>
+            </select>
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
