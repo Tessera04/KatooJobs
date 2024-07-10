@@ -19,7 +19,7 @@
                 <option value="{{ $salario->id }}">{{ $salario->salario }}</option>
             @endforeach
         </select>
-        <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
+        <x-input-error :messages="$errors->get('salario')" class="mt-2" />
     </div>
 
     <div>
@@ -30,7 +30,7 @@
             <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
             @endforeach
         </select>
-        <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
+        <x-input-error :messages="$errors->get('categoria')" class="mt-2" />
     </div>
 
     <div>
@@ -59,7 +59,7 @@
     <div>
         <x-input-label for="descripcion" :value="__('Descripcion del Puesto')" />
         <textarea wire:model="descripcion" id="descripcion" placeholder="Descripcion del Puesto" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500  dark:focus:ring-indigo-600 rounded-md shadow-sm w-full h-72"></textarea>
-        <x-input-error :messages="$errors->get('empresa')" class="mt-2" />
+        <x-input-error :messages="$errors->get('descripcion')" class="mt-2" />
     </div>
 
     <div>
@@ -68,7 +68,9 @@
             id="imagen" 
             class="block mt-1 w-full" 
             type="file" 
-            wire:model="imagen"/>
+            wire:model="imagen"
+            accept="image/*"
+            />
         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
     </div>
 
