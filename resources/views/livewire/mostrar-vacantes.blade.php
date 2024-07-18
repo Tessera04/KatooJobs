@@ -17,7 +17,7 @@
                     <a href="{{ route("vacantes.edit", $vacante->id) }}" class="bg-gray-400 py-2 px-4 rounded-lg text-black text-xs font-bold uppercase text-center">
                         Editar
                     </a>
-                    <a href="#" class="bg-red-400 py-2 px-4 rounded-lg text-black text-xs font-bold uppercase text-center">
+                    <a wire:click="$emit('prueba'), {{ $vacante->id }}" class="bg-red-400 py-2 px-4 rounded-lg text-black text-xs font-bold uppercase text-center">
                         Eliminar
                     </a>
                 </div>
@@ -36,3 +36,31 @@
     </div>
 </div>
 
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        Livewire.on('prueba', vacanteId => {
+            Swal.fire({
+                title: "Eliminar Vacante?",
+                text: "La vacante eliminada no podra recuperarse!",
+                icon: "warning",
+                showCancelButton: true,
+                color:"#fff",
+                confirmButtonColor: "#2d3748",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, Eliminar",
+                cancelButtonText: "Cancelar",
+                background: "#1a202c"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                    });
+                }
+            });
+        })
+    </script>
+@endpush
