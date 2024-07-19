@@ -10,19 +10,34 @@
                     </a>
                 </div>
 
+                @auth
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
-                        {{ __('Mis Vacantes') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
-                        {{ __('Crear Vacante') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
+                            {{ __('Mis Vacantes') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                            {{ __('Crear Vacante') }}
+                        </x-nav-link>
+                    </div>
+                @endauth
+
+                @guest
+                <!-- Navigation Links -->
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('login')">
+                            {{ __('Iniciar Sesion') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('register')">
+                            {{ __('Registrarse') }}
+                        </x-nav-link>
+                    </div>
+                @endguest
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @auth
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -53,6 +68,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @endauth
             </div>
 
             <!-- Hamburger -->
@@ -69,6 +85,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    @auth
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
                 {{ __('Mis Vacantes') }}
@@ -102,5 +119,17 @@
                 </form>
             </div>
         </div>
+    @endauth
+
+    @guest
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('login')">
+                {{ __('Iniciar Sesion') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('register')">
+                {{ __('Registrarse') }}
+            </x-responsive-nav-link>
+        </div>
+    @endguest
     </div>
 </nav>
