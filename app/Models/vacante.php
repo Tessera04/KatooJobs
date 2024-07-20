@@ -29,4 +29,8 @@ class vacante extends Model
     public function salario(){
         return $this->belongsTo(salario::class);
     }
+
+    public function candidato(){
+        return $this->hasMany(candidato::class);
+    }
 }
