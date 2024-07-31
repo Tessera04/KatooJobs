@@ -33,4 +33,8 @@ class vacante extends Model
     public function candidato(){
         return $this->hasMany(candidato::class);
     }
+
+    public function reclutador(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
