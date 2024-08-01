@@ -15,7 +15,7 @@ class PostularVacante extends Component
     public $vacante;
 
     protected $rules = [
-        'cv' => 'required|mimes:pdf,doc,docx'
+        'cv' => 'required|mimes:pdf'
     ];
 
     public function mount(vacante $vacante){
@@ -28,8 +28,8 @@ class PostularVacante extends Component
         //Almacenar cv en el disco duro
         $datos = $this->validate();
 
-        $cv = $this->cv->store('public/storage/cv');
-        $datos['cv'] = str_replace('public/storage/cv/', '', $cv);
+        $cv = $this->cv->store('public/cv');
+        $datos['cv'] = str_replace('public/cv/', '', $cv);
 
         //Crear candidato a la Vacante
         $this->vacante->candidato()->create([
