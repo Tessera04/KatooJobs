@@ -43,7 +43,7 @@ class NuevoCandidato extends Notification
         $url = url('/notificaciones');
 
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
+                    ->line('Has recibido un nuevo candidato en tu vacante.')
                     ->line('La vacante es: ' . $this->nombre_vacante)
                     ->action('Ver notificaciones', $url)
                     ->line('Gracias por utilizar KatooJobs!');
