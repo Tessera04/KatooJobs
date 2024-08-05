@@ -11,15 +11,17 @@
                 </div>
 
                 @auth
-                <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
-                            {{ __('Mis Vacantes') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
-                            {{ __('Crear Vacante') }}
-                        </x-nav-link>
-                    </div>
+                    @can('create', App\Models\Vacante::class)
+                    <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
+                                {{ __('Mis Vacantes') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                                {{ __('Crear Vacante') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan
                 @endauth
 
                 @guest
@@ -38,9 +40,9 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
-                    @if (auth()->user()->rol === 2)
+                    @can('create', App\Models\Vacante::class)
                         <a href="{{ route('notificaciones') }}" class="font-extrabold text-black mr-2 w-7 h-7 bg-yellow-400 hover:bg-yellow-600 rounded-full flex flex-col justify-center items-center text-sm">{{ Auth::user()->unreadNotifications->count() }}</a>
-                    @endif
+                    @endcan
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
