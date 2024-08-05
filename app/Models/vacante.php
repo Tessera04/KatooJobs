@@ -31,7 +31,7 @@ class vacante extends Model
     }
 
     public function candidato(){
-        return $this->hasMany(candidato::class);
+        return $this->hasMany(candidato::class)->orderBy('created_at', 'DESC');
     }
 
     public function reclutador(){
